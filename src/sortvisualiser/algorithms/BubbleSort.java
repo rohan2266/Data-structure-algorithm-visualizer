@@ -1,52 +1,36 @@
 package sortvisualiser.algorithms;
-
 import sortvisualiser.SortArray;
 
-/**
- * Bubble sort implementation
- *
- * @author mhops
- */
-public class BubbleSort implements ISortAlgorithm {
-
-    private long stepDelay = 2;
-    /**
-     * This method implements the bubble sort algorithm, see
-     * <a href="https://en.wikipedia.org/wiki/Bubble_sort">Bubble_sort</a> to understand more.
-     * Takes a SortArray object called array and sorts his elements according to the mathematical theory
-     * of the order "less than", see <a href="https://en.wikipedia.org/wiki/Order_theory">Order_theory</a> to
-     * understand more.
-     *
-     * @param array the array to be sorted
-     * @see SortArray
-     */
+//Bubble sort implementation
+public class BubbleSort implements ISortAlgorithm {  //implements an interface
+    private long stepDelay = 2; //Declares a private variable to be passed as parameter in setDelay method.
     @Override
     public void runSort(SortArray array) {
-        int len = array.arraySize();
+        int len = array.arraySize();  //assigning len as size of array using arraySize() method declared in SortArray class
         for (int i = 0; i < len - 1; i++) {
             for (int j = 0; j < len - i - 1; j++) {
-                if (array.getValue(j) > array.getValue(j + 1)) {
-                    array.swap(j, j + 1, getDelay(), true);
+                if (array.getValue(j) > array.getValue(j + 1)) { //getvalue return the value of array, this method is declared im SortArray class
+                    array.swap(j, j + 1, getDelay(), true); //user defined method, declared in SortArray class used for swapping
                 }
             }
         }
     }
 
     @Override
-    public String getName() {
+    public String getName() {    // getname method to return type of sort, used in MainMenuScreen and SortingVisualizerScreen
         return "Bubble Sort";
     }
-    public String getName1() {
-        return "Time: (nlogn)\n Space: O(n)";
+    public String getName1() {   // getname1 method to return time and space complexity, used in MainMenuScreen and SortingVisualizerScreen
+        return "Time: (n^2)\n Space: O(n)";
     }
 
     @Override
-    public long getDelay() {
+    public long getDelay() {     // Used to delay the output
         return stepDelay;
     }
 
     @Override
-    public void setDelay(long delay) {
-        this.stepDelay = delay;
+    public void setDelay(long delay) {     // used to set the value of delay
+        this.stepDelay = delay;            // this pointer is used to reference the current class instance variable
     }
 }

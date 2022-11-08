@@ -1,10 +1,8 @@
 package sortvisualiser.algorithms;
-
 import sortvisualiser.SortArray;
 
 public class QuickSort implements ISortAlgorithm {
-
-    private long stepDelay = 30;
+    private long stepDelay = 30;      //Declares a private variable to be passed as parameter in setDelay method.
     private int findPivotPoint(SortArray array, int lowIndex, int highIndex) {
         int pivotValue = array.getValue(highIndex);
         int i = lowIndex - 1;
@@ -32,21 +30,18 @@ public class QuickSort implements ISortAlgorithm {
     }
 
     @Override
-    public String getName() {
+    public String getName() {        // getname method to return type of sort, used in MainMenuScreen and SortingVisualizerScreen
         return "Quick Sort";
     }
-    public String getName1() {
-        return "Time: (nlogn)\n Space: O(n)";
+    public String getName1() {       // getname1 method to return time and space complexity, used in MainMenuScreen and SortingVisualizerScreen
+        return "Time: (n^2)\n Space: O(n)";
     }
-
     @Override
-    public long getDelay() {
+    public long getDelay() {          // Used to return value of delay
         return stepDelay;
     }
-
     @Override
-    public void setDelay(long delay) {
-        this.stepDelay = delay;
+    public void setDelay(long delay) { // used to set the value of delay
+        this.stepDelay = delay;        // this pointer is used to reference the current class instance variable
     }
-
 }
