@@ -22,8 +22,6 @@ import sortvisualiser.algorithms.ISortAlgorithm;
 
 /**
  * The array that can be sorted
- *
- * @author mhops
  */
 public class SortArray extends JPanel {
     public static final int DEFAULT_WIN_WIDTH = 1280;
@@ -45,11 +43,8 @@ public class SortArray extends JPanel {
     private ISortAlgorithm algorithm;
     private long algorithmDelay = 0;
 
-//    private final MidiSoundPlayer player;
     private final JSpinner spinner;
-//    private final boolean playSounds;
 
-    private int arrayChanges = 0; // Number of changes to the array the current algorithm has taken so far
 
     public SortArray() {
         setBackground(Color.DARK_GRAY);
@@ -59,8 +54,6 @@ public class SortArray extends JPanel {
             array[i] = i;
             barColours[i] = 0;
         }
-//        player = new MidiSoundPlayer(NUM_BARS);
-//        this.playSounds = playSounds;
         spinner = new JSpinner(new SpinnerNumberModel(1, 1, 1000, 1));
         spinner.addChangeListener((event) -> {
             algorithmDelay = (Integer) spinner.getValue();
@@ -92,11 +85,6 @@ public class SortArray extends JPanel {
         } catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
-//        if (playSounds) {
-//            player.makeSound(value);
-//        }
-        if (isStep)
-            arrayChanges++;
     }
 
     public void swap(int firstIndex, int secondIndex, long millisecondDelay, boolean isStep) {
@@ -120,13 +108,11 @@ public class SortArray extends JPanel {
     }
 
     public void shuffle() {
-        arrayChanges = 0;
         Random rng = new Random();
         for (int i = 0; i < arraySize(); i++) {
             int swapWithIndex = rng.nextInt(arraySize() - 1);
             swap(i, swapWithIndex, 5, false);
         }
-        arrayChanges = 0;
     }
 
     public void highlightArray() {
@@ -167,7 +153,6 @@ public class SortArray extends JPanel {
             panelGraphics.drawString(" Current algorithm: " + algorithmName, 10, 30);
             panelGraphics.drawString(" Time Complexity & Space Complexity: " + tandComplexity, 10, 55);
             panelGraphics.drawString("Current step delay: " + algorithmDelay + "ms", 10, 80);
-//            panelGraphics.drawString("     Array Changes: " + arrayChanges, 10, 105);
 
             drawBars(panelGraphics);
         } finally {
