@@ -7,25 +7,29 @@ import sortvisualiser.MainApp;
 import sortvisualiser.SortArray;
 import sortvisualiser.algorithms.ISortAlgorithm;
 
+<<<<<<< HEAD
 
 public final class SortingVisualiserScreen extends Screen { //The main class for the sort visualiser GUI
+=======
+public final class SortingVisualiserScreen extends Screen {
+>>>>>>> 6a5781b83e4af42e6dddad64f872c76d885b4356
     private final SortArray sortArray;
     private final ArrayList<ISortAlgorithm> sortQueue;
 
     /**
      * Creates the GUI
-     * @param algorithms List of algorithms to run for visualisation
-     * @param app The main application
+     * List of algorithms to run for visualisation
+     * app The main application
      */
     public SortingVisualiserScreen(ArrayList<ISortAlgorithm> algorithms, MainApp app) {
         super(app);
-        setLayout(new BorderLayout());
-        sortArray = new SortArray();
-        add(sortArray, BorderLayout.CENTER);
-        sortQueue = algorithms;
+        setLayout(new BorderLayout());   // sets the border of GUI window
+        sortArray = new SortArray();  // creates object of SortArray class
+        add(sortArray, BorderLayout.CENTER);    // adds the radiobutton for the selected sorting algorithm
+        sortQueue = algorithms; // adds the algorithm to teh arraylist
     }
 
-    private void longSleep() {
+    private void longSleep() {      // used for delay
         try {
             Thread.sleep(1000);
         } catch (InterruptedException ex) {
@@ -33,7 +37,7 @@ public final class SortingVisualiserScreen extends Screen { //The main class for
         }
     }
 
-    private void shuffleAndWait() {
+    private void shuffleAndWait() { // method for shuffling the rearranged arrays and changing their colors
         sortArray.shuffle();
         sortArray.resetColours();
         longSleep();

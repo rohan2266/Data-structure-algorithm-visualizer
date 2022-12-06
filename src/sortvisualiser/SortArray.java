@@ -21,8 +21,6 @@ import sortvisualiser.algorithms.ISortAlgorithm;
 
 /**
  * The array that can be sorted
- *
- * @author mhops
  */
 public class SortArray extends JPanel {
     public static final int DEFAULT_WIN_WIDTH = 1280;
@@ -43,8 +41,14 @@ public class SortArray extends JPanel {
     private String tandComplexity = " ";
     private ISortAlgorithm algorithm;
     private long algorithmDelay = 0;
+<<<<<<< HEAD
     private final JSpinner spinner;
     //private int arrayChanges = 0; // Number of changes to the array the current algorithm has taken so far
+=======
+
+    private final JSpinner spinner;
+
+>>>>>>> 6a5781b83e4af42e6dddad64f872c76d885b4356
 
     public SortArray() {
         setBackground(Color.DARK_GRAY);
@@ -145,7 +149,6 @@ public class SortArray extends JPanel {
             panelGraphics.drawString(" Current algorithm: " + algorithmName, 10, 30);
             panelGraphics.drawString(" Time Complexity & Space Complexity: " + tandComplexity, 10, 55);
             panelGraphics.drawString("Current step delay: " + algorithmDelay + "ms", 10, 80);
-//            panelGraphics.drawString("     Array Changes: " + arrayChanges, 10, 105);
 
             drawBars(panelGraphics);
         } finally {
