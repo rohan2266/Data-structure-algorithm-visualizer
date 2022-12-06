@@ -13,7 +13,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
-
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
@@ -44,12 +43,8 @@ public class SortArray extends JPanel {
     private String tandComplexity = " ";
     private ISortAlgorithm algorithm;
     private long algorithmDelay = 0;
-
-//    private final MidiSoundPlayer player;
     private final JSpinner spinner;
-//    private final boolean playSounds;
-
-    private int arrayChanges = 0; // Number of changes to the array the current algorithm has taken so far
+    //private int arrayChanges = 0; // Number of changes to the array the current algorithm has taken so far
 
     public SortArray() {
         setBackground(Color.DARK_GRAY);
@@ -59,8 +54,6 @@ public class SortArray extends JPanel {
             array[i] = i;
             barColours[i] = 0;
         }
-//        player = new MidiSoundPlayer(NUM_BARS);
-//        this.playSounds = playSounds;
         spinner = new JSpinner(new SpinnerNumberModel(1, 1, 1000, 1));
         spinner.addChangeListener((event) -> {
             algorithmDelay = (Integer) spinner.getValue();
@@ -77,12 +70,9 @@ public class SortArray extends JPanel {
         return array[index];
     }
 
-    /**
-     * Gets the max value of the array or Integer.MIN_VALUE if there isn't one.
-     * @return the max value or Integer.MIN_VALUE.
-     */
+    
     public int getMaxValue() {
-        return Arrays.stream(array).max().orElse(Integer.MIN_VALUE);
+        return Arrays.stream(array).max().orElse(Integer.MIN_VALUE); //Gets the max value of the array or Integer.MIN_VALUE if there isn't one.//* @return the max value or Integer.MIN_VALUE.
     }
 
     private void finaliseUpdate(int value,  long millisecondDelay, boolean isStep) {
@@ -92,11 +82,6 @@ public class SortArray extends JPanel {
         } catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
-//        if (playSounds) {
-//            player.makeSound(value);
-//        }
-        if (isStep)
-            arrayChanges++;
     }
 
     public void swap(int firstIndex, int secondIndex, long millisecondDelay, boolean isStep) {
@@ -120,13 +105,11 @@ public class SortArray extends JPanel {
     }
 
     public void shuffle() {
-        arrayChanges = 0;
         Random rng = new Random();
         for (int i = 0; i < arraySize(); i++) {
             int swapWithIndex = rng.nextInt(arraySize() - 1);
             swap(i, swapWithIndex, 5, false);
         }
-        arrayChanges = 0;
     }
 
     public void highlightArray() {
@@ -135,14 +118,9 @@ public class SortArray extends JPanel {
         }
     }
 
-    /**
-     * Gets the canvas size
-     *
-     * @return size
-     */
     @Override
     public Dimension getPreferredSize() {
-        return new Dimension(DEFAULT_WIN_WIDTH, DEFAULT_WIN_HEIGHT);
+        return new Dimension(DEFAULT_WIN_WIDTH, DEFAULT_WIN_HEIGHT); //Gets the canvas size @return size
     }
 
     public void resetColours() {

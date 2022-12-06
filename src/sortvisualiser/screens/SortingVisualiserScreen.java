@@ -7,12 +7,8 @@ import sortvisualiser.MainApp;
 import sortvisualiser.SortArray;
 import sortvisualiser.algorithms.ISortAlgorithm;
 
-/**
- * The main class for the sort visualiser GUI
- *
- * @author Matt Hopson
- */
-public final class SortingVisualiserScreen extends Screen {
+
+public final class SortingVisualiserScreen extends Screen { //The main class for the sort visualiser GUI
     private final SortArray sortArray;
     private final ArrayList<ISortAlgorithm> sortQueue;
 

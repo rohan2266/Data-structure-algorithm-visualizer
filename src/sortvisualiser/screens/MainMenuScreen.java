@@ -1,6 +1,5 @@
 package sortvisualiser.screens;
 
-import java.awt.CheckboxGroup;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -18,12 +17,12 @@ import sortvisualiser.algorithms.*;
 
 
 public final class MainMenuScreen extends Screen {
-    private static final Color BACKGROUND_COLOUR = Color.BLUE;
-    private final ArrayList<AlgorithmCheckBox> checkBoxes;
+    private static final Color BACKGROUND_COLOUR = Color.BLUE; //defining color of background
+    private final ArrayList<AlgorithmCheckBox> checkBoxes; 
 
     public MainMenuScreen(MainApp app) {
         super(app);
-        checkBoxes = new ArrayList<>();
+        checkBoxes = new ArrayList<>(); //array that contains the checkboxes
         setUpGUI();
     }
 
@@ -32,18 +31,17 @@ public final class MainMenuScreen extends Screen {
         box.setAlignmentX(Component.LEFT_ALIGNMENT);
         box.setBackground(BACKGROUND_COLOUR);
         box.setForeground(Color.WHITE);
-        checkBoxes.add(new AlgorithmCheckBox(algorithm, box));
+        checkBoxes.add(new AlgorithmCheckBox(algorithm, box)); //adding algorithms to these checkboxes
         panel.add(box);
     }
 
     private void initContainer(JPanel p) {
         p.setLayout(new BoxLayout(p, BoxLayout.PAGE_AXIS));
         p.setBackground(BACKGROUND_COLOUR);
-        //p.setBorder(BorderFactory.createLineBorder(Color.WHITE));
     }
 
     public void setUpGUI() {
-        JPanel sortAlgorithmContainer = new JPanel();
+        JPanel sortAlgorithmContainer = new JPanel(); 
         JPanel optionsContainer = new JPanel();
         JPanel outerContainer = new JPanel();
         initContainer(this);
@@ -54,8 +52,8 @@ public final class MainMenuScreen extends Screen {
         outerContainer.setLayout(new BoxLayout(outerContainer, BoxLayout.LINE_AXIS));
 
         try {
-            ClassLoader loader = getClass().getClassLoader();
-            BufferedImage image = ImageIO.read(new File(loader.getResource("logo.png").getFile()));
+            ClassLoader loader = getClass().getClassLoader(); //ClassLoader is used to load the classes at run time
+            BufferedImage image = ImageIO.read(new File(loader.getResource("logo.png").getFile())); //why this logo necessary?
             JLabel label = new JLabel(new ImageIcon(image));
             label.setAlignmentX(Component.LEFT_ALIGNMENT);
             add(label);
@@ -63,7 +61,7 @@ public final class MainMenuScreen extends Screen {
             System.out.println("Unable to load logo");
         }
 
-        sortAlgorithmContainer.setAlignmentX(Component.LEFT_ALIGNMENT);
+        sortAlgorithmContainer.setAlignmentX(Component.LEFT_ALIGNMENT);//Examples of components are the buttons, checkboxes, and scrollbars of a typical graphical user interface
         addCheckBox(new BubbleSort(),       sortAlgorithmContainer);
         addCheckBox(new SelectionSort(),    sortAlgorithmContainer);
         addCheckBox(new QuickSort(),        sortAlgorithmContainer);
@@ -71,14 +69,7 @@ public final class MainMenuScreen extends Screen {
         addCheckBox(new InsertionSort(),    sortAlgorithmContainer);
         addCheckBox(new RadixSort(),        sortAlgorithmContainer);
 
-//        JCheckBox soundCheckBox = new JCheckBox("Play Sounds");
-//        soundCheckBox.setAlignmentX(Component.LEFT_ALIGNMENT);
-//        soundCheckBox.setBackground(BACKGROUND_COLOUR);
-//        soundCheckBox.setForeground(Color.WHITE);
-
-//        optionsContainer.add(soundCheckBox);
-
-        JButton startButton = new JButton("Start");
+        JButton startButton = new JButton("Start"); //button text
         startButton.addActionListener((ActionEvent e) -> {
             ArrayList<ISortAlgorithm> algorithms = new ArrayList<>();
             for (AlgorithmCheckBox cb : checkBoxes) {
@@ -89,7 +80,6 @@ public final class MainMenuScreen extends Screen {
             app.pushScreen(
                     new SortingVisualiserScreen(
                             algorithms,
-//                            soundCheckBox.isSelected(),
                             app
                     ));
         });
