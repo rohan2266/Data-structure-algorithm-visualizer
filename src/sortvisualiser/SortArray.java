@@ -13,7 +13,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
-
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
@@ -42,9 +41,14 @@ public class SortArray extends JPanel {
     private String tandComplexity = " ";
     private ISortAlgorithm algorithm;
     private long algorithmDelay = 0;
+<<<<<<< HEAD
+    private final JSpinner spinner;
+    //private int arrayChanges = 0; // Number of changes to the array the current algorithm has taken so far
+=======
 
     private final JSpinner spinner;
 
+>>>>>>> 6a5781b83e4af42e6dddad64f872c76d885b4356
 
     public SortArray() {
         setBackground(Color.DARK_GRAY);
@@ -70,12 +74,9 @@ public class SortArray extends JPanel {
         return array[index];
     }
 
-    /**
-     * Gets the max value of the array or Integer.MIN_VALUE if there isn't one.
-     * @return the max value or Integer.MIN_VALUE.
-     */
+    
     public int getMaxValue() {
-        return Arrays.stream(array).max().orElse(Integer.MIN_VALUE);
+        return Arrays.stream(array).max().orElse(Integer.MIN_VALUE); //Gets the max value of the array or Integer.MIN_VALUE if there isn't one.//* @return the max value or Integer.MIN_VALUE.
     }
 
     private void finaliseUpdate(int value,  long millisecondDelay, boolean isStep) {
@@ -121,14 +122,9 @@ public class SortArray extends JPanel {
         }
     }
 
-    /**
-     * Gets the canvas size
-     *
-     * @return size
-     */
     @Override
     public Dimension getPreferredSize() {
-        return new Dimension(DEFAULT_WIN_WIDTH, DEFAULT_WIN_HEIGHT);
+        return new Dimension(DEFAULT_WIN_WIDTH, DEFAULT_WIN_HEIGHT); //Gets the canvas size @return size
     }
 
     public void resetColours() {
