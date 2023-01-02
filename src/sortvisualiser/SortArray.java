@@ -31,7 +31,7 @@ public class SortArray extends JPanel {
      * Based on the original 256 bars each being 2x their height
      * and 720px window height, or 512/720
      */
-    private static final double BAR_HEIGHT_PERCENT = 512.0/720.0;
+    private static final double BAR_HEIGHT_PERCENT = 512.0 / 720.0;
     private static final int NUM_BARS = DEFAULT_WIN_WIDTH / DEFAULT_BAR_WIDTH;
 
     private final int[] array;
@@ -41,14 +41,9 @@ public class SortArray extends JPanel {
     private String tandComplexity = " ";
     private ISortAlgorithm algorithm;
     private long algorithmDelay = 0;
-<<<<<<< HEAD
     private final JSpinner spinner;
-    //private int arrayChanges = 0; // Number of changes to the array the current algorithm has taken so far
-=======
-
-    private final JSpinner spinner;
-
->>>>>>> 6a5781b83e4af42e6dddad64f872c76d885b4356
+    // private int arrayChanges = 0; // Number of changes to the array the current
+    // algorithm has taken so far
 
     public SortArray() {
         setBackground(Color.DARK_GRAY);
@@ -63,7 +58,7 @@ public class SortArray extends JPanel {
             algorithmDelay = (Integer) spinner.getValue();
             algorithm.setDelay(algorithmDelay);
         });
-        add(spinner,BorderLayout.LINE_START);
+        add(spinner, BorderLayout.LINE_START);
     }
 
     public int arraySize() {
@@ -74,12 +69,13 @@ public class SortArray extends JPanel {
         return array[index];
     }
 
-    
     public int getMaxValue() {
-        return Arrays.stream(array).max().orElse(Integer.MIN_VALUE); //Gets the max value of the array or Integer.MIN_VALUE if there isn't one.//* @return the max value or Integer.MIN_VALUE.
+        return Arrays.stream(array).max().orElse(Integer.MIN_VALUE); // Gets the max value of the array or
+                                                                     // Integer.MIN_VALUE if there isn't one.//* @return
+                                                                     // the max value or Integer.MIN_VALUE.
     }
 
-    private void finaliseUpdate(int value,  long millisecondDelay, boolean isStep) {
+    private void finaliseUpdate(int value, long millisecondDelay, boolean isStep) {
         repaint();
         try {
             Thread.sleep(millisecondDelay);
@@ -103,7 +99,6 @@ public class SortArray extends JPanel {
         array[index] = value;
         barColours[index] = 100;
 
-
         finaliseUpdate(value, millisecondDelay, isStep);
         repaint();
     }
@@ -124,7 +119,7 @@ public class SortArray extends JPanel {
 
     @Override
     public Dimension getPreferredSize() {
-        return new Dimension(DEFAULT_WIN_WIDTH, DEFAULT_WIN_HEIGHT); //Gets the canvas size @return size
+        return new Dimension(DEFAULT_WIN_WIDTH, DEFAULT_WIN_HEIGHT); // Gets the canvas size @return size
     }
 
     public void resetColours() {
@@ -139,8 +134,7 @@ public class SortArray extends JPanel {
         super.paintComponent(g);
         Graphics2D panelGraphics = (Graphics2D) g.create();
 
-        try
-        {
+        try {
             Map<RenderingHints.Key, Object> renderingHints = new HashMap<>();
             renderingHints.put(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
             panelGraphics.addRenderingHints(renderingHints);
@@ -156,24 +150,23 @@ public class SortArray extends JPanel {
         }
     }
 
-    private void drawBars(Graphics2D panelGraphics)
-    {
+    private void drawBars(Graphics2D panelGraphics) {
         int barWidth = getWidth() / NUM_BARS;
         int bufferedImageWidth = barWidth * NUM_BARS;
         int bufferedImageHeight = getHeight();
 
-        if(bufferedImageHeight > 0 && bufferedImageWidth > 0) {
-            if(bufferedImageWidth < 256) {
+        if (bufferedImageHeight > 0 && bufferedImageWidth > 0) {
+            if (bufferedImageWidth < 256) {
                 bufferedImageWidth = 256;
             }
 
             double maxValue = getMaxValue();
 
-            BufferedImage bufferedImage = new BufferedImage(bufferedImageWidth, bufferedImageHeight, BufferedImage.TYPE_INT_ARGB);
+            BufferedImage bufferedImage = new BufferedImage(bufferedImageWidth, bufferedImageHeight,
+                    BufferedImage.TYPE_INT_ARGB);
             makeBufferedImageTransparent(bufferedImage);
             Graphics2D bufferedGraphics = null;
-            try
-            {
+            try {
                 bufferedGraphics = bufferedImage.createGraphics();
 
                 for (int x = 0; x < NUM_BARS; x++) {
@@ -187,8 +180,7 @@ public class SortArray extends JPanel {
                     int val = barColours[x] * 2;
                     if (val > 190) {
                         bufferedGraphics.setColor(new Color(255 - val, 255, 255 - val));
-                    }
-                    else {
+                    } else {
                         bufferedGraphics.setColor(new Color(255, 255 - val, 255 - val));
                     }
                     bufferedGraphics.fillRect(xBegin, yBegin, barWidth, height);
@@ -196,34 +188,27 @@ public class SortArray extends JPanel {
                         barColours[x] -= 5;
                     }
                 }
-            }
-            finally
-            {
-                if(bufferedGraphics != null)
-                {
+            } finally {
+                if (bufferedGraphics != null) {
                     bufferedGraphics.dispose();
                 }
             }
 
-            panelGraphics.drawImage(bufferedImage, 0, 0, getWidth(), getHeight(), 0, 0, bufferedImage.getWidth(), bufferedImage.getHeight(), null);
+            panelGraphics.drawImage(bufferedImage, 0, 0, getWidth(), getHeight(), 0, 0, bufferedImage.getWidth(),
+                    bufferedImage.getHeight(), null);
         }
     }
 
-    private void makeBufferedImageTransparent(BufferedImage image)
-    {
+    private void makeBufferedImageTransparent(BufferedImage image) {
         Graphics2D bufferedGraphics = null;
-        try
-        {
+        try {
             bufferedGraphics = image.createGraphics();
 
             bufferedGraphics.setComposite(AlphaComposite.getInstance(AlphaComposite.CLEAR));
             bufferedGraphics.fillRect(0, 0, image.getWidth(), image.getHeight());
             bufferedGraphics.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER));
-        }
-        finally
-        {
-            if(bufferedGraphics != null)
-            {
+        } finally {
+            if (bufferedGraphics != null) {
                 bufferedGraphics.dispose();
             }
         }
@@ -233,7 +218,8 @@ public class SortArray extends JPanel {
     public void setName(String algorithmName) {
         this.algorithmName = algorithmName;
     }
-    public void setComplexity(String tandCcomplexity){
+
+    public void setComplexity(String tandCcomplexity) {
         this.tandComplexity = tandCcomplexity;
     }
 

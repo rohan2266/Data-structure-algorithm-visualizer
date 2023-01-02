@@ -7,12 +7,7 @@ import sortvisualiser.MainApp;
 import sortvisualiser.SortArray;
 import sortvisualiser.algorithms.ISortAlgorithm;
 
-<<<<<<< HEAD
-
-public final class SortingVisualiserScreen extends Screen { //The main class for the sort visualiser GUI
-=======
-public final class SortingVisualiserScreen extends Screen {
->>>>>>> 6a5781b83e4af42e6dddad64f872c76d885b4356
+public final class SortingVisualiserScreen extends Screen { // The main class for the sort visualiser GUI
     private final SortArray sortArray;
     private final ArrayList<ISortAlgorithm> sortQueue;
 
@@ -23,13 +18,13 @@ public final class SortingVisualiserScreen extends Screen {
      */
     public SortingVisualiserScreen(ArrayList<ISortAlgorithm> algorithms, MainApp app) {
         super(app);
-        setLayout(new BorderLayout());   // sets the border of GUI window
-        sortArray = new SortArray();  // creates object of SortArray class
-        add(sortArray, BorderLayout.CENTER);    // adds the radiobutton for the selected sorting algorithm
+        setLayout(new BorderLayout()); // sets the border of GUI window
+        sortArray = new SortArray(); // creates object of SortArray class
+        add(sortArray, BorderLayout.CENTER); // adds the radiobutton for the selected sorting algorithm
         sortQueue = algorithms; // adds the algorithm to teh arraylist
     }
 
-    private void longSleep() {      // used for delay
+    private void longSleep() { // used for delay
         try {
             Thread.sleep(1000);
         } catch (InterruptedException ex) {
