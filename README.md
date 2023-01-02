@@ -42,6 +42,7 @@ Even while teaching it can be used in an efficient manner. Users will be able to
 1. Avinash Kumar (https://github.com/avinashkumar10)
 2. Medhavi Singh (https://github.com/Med16-11)
 3. Rohan Chauhan (https://github.com/rohan2266)
+4. Rohit Sharma  (https://github.com/Rohitsharma-20)
 
 ## NOTE
 This projected is created as a Minor 1 project by third year students. In case you find any mistake or want to contribute feel free to fork the repo and make 
